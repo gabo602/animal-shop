@@ -34,12 +34,14 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-configuration-processor'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	implementation 'org.springframework.data:spring-data-envers'
 	implementation 'org.springframework.security:spring-security-test'
 	implementation 'org.springframework.security:spring-security-taglibs'
 	implementation 'org.springframework.boot:spring-boot-starter-json'
-	implementation 'org.springframework.boot:spring-boot-devtools' // causes Illegal reflective access
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+	compileOnly 'org.springframework.boot:spring-boot-devtools'
+	
+	implementation 'com.h2database:h2'
 }
 
 java {
@@ -47,7 +49,7 @@ java {
 }
 
 springBoot {
-	mainClassName = 'sk.pga.animal-shop'
+	mainClassName = 'sk.pga.animalshop.Application'
 }
 
 bootWar {

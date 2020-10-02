@@ -1,0 +1,78 @@
+jdbc:
+  datasource:
+    driverClassName: org.h2.Driver
+    jdbcUrl: "jdbc:h2:file:./animalShop"
+    url: jdbc:h2:file:./animalShop
+#      url: jdbc:h2:mem:animalShop;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE
+    username: animal
+    password: shop
+  jpa:
+    open-in-view: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        show_sql: false
+        format_sql: true
+#         hbm2ddl.auto: validate
+        hbm2ddl.auto: update
+
+spring:
+  main:
+    banner-mode: "off"
+#  output:
+#    ansi:
+#      enabled: always
+
+server:
+  port: 8088
+
+---
+spring:
+  profiles: default, verbose
+  main:
+    banner-mode: console
+
+showErrorProfile: fullMessage
+
+---
+spring:
+  profiles: dev-tests
+
+hibernate:
+  hbm2ddl.auto: validate
+
+showErrorProfile: shortMessage
+
+---
+spring:
+  profiles: dev
+  output:
+    ansi:
+      enabled: always
+
+showErrorProfile: shortMessage
+
+logging:
+  pattern:
+    file: "%clr(%d){faint} %clr(%5p) %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n%wEx"
+
+---
+
+spring:
+  profiles: test
+
+showErrorProfile: shortMessage
+
+logging:
+  pattern:
+    file: "%clr(%d){faint} %clr(%5p) %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n%wEx"
+  
+---
+
+spring:
+  profiles: production
+  
+hibernate:
+  hbm2ddl.auto: validate
+
+showErrorProfile: shortMessage

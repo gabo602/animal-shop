@@ -10,3 +10,6 @@ bin/
 
 # Ignore Gradle build output directory
 build
+
+# Ignore h2 database
+*.mv.db
