@@ -13,3 +13,4 @@ build
 
 # Ignore h2 database
 *.mv.db
+*.trace.db
