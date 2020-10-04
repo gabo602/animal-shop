@@ -7,17 +7,17 @@
  */
 
 plugins {
-    // Apply the java-library plugin to add support for Java Library
-    id 'java-library'
+	// Apply the java-library plugin to add support for Java Library
+	id 'java-library'
 	id 'org.springframework.boot' version "$springframeworkBootVersion"
 	id "io.spring.dependency-management" version "$springDependencyManagementVersion"
 	id 'war'
 }
 
 repositories {
-    // Use jcenter for resolving dependencies.
-    // You can declare any Maven/Ivy/file repository here.
-    jcenter()
+	// Use jcenter for resolving dependencies.
+	// You can declare any Maven/Ivy/file repository here.
+	jcenter()
 }
 
 dependencies {
@@ -44,6 +44,8 @@ dependencies {
 	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-hibernate5'
 	
 	implementation 'com.h2database:h2'
+	
+	compile 'com.github.jsimone:webapp-runner:$webAppRunnerVersion'
 }
 
 java {
@@ -57,3 +59,17 @@ springBoot {
 bootWar {
 	launchScript()
 }
+
+task stage() {
+	dependsOn clean, war
+}
+war.mustRunAfter clean
+
+task copyToLib(type: Copy) {
+	into "$buildDir/server"
+	from(configurations.compile) {
+		include "webapp-runner*"
+	}
+}
+
+stage.dependsOn(copyToLib)
