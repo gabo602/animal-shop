@@ -45,7 +45,7 @@ dependencies {
 	
 	implementation 'com.h2database:h2'
 	
-	implementation "com.github.jsimone:webapp-runner:$webAppRunnerVersion"
+	compile "com.github.jsimone:webapp-runner:$webAppRunnerVersion"
 }
 
 java {
