@@ -61,9 +61,9 @@ bootWar {
 }
 
 task stage() {
-	dependsOn clean, war
+	dependsOn clean, build
 }
-war.mustRunAfter clean
+build.mustRunAfter clean
 
 task copyToLib(type: Copy) {
 	into "$buildDir/server"
